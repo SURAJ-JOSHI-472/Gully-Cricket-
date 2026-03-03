@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🏏 Gully Cricket Match Tracker</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>🏏 Gully Cricket Match Tracker</h1>
+  <h3>(Badigaad Cricket Association, Lohaghat)</h3>
+
+  <div class="setup">
+    Overs: <input type="number" id="overs" value="5" min="1" max="50"> 
+    Max Wickets (All Out): <input type="number" id="wickets" value="10" min="1" max="10">
+    <button class="btn-primary" onclick="startMatch()">Start Match</button>
+  </div>
+
+  <div class="scoreboard" id="scoreboard">
+    No match started yet.
+  </div>
+
+  <div id="controls" class="controls" style="display:none;">
+    <h3>Ball Outcome</h3>
+    <div class="buttons">
+      <button class="btn-run" onclick="addRun(0)">0</button>
+      <button class="btn-run" onclick="addRun(1)">1</button>
+      <button class="btn-run" onclick="addRun(2)">2</button>
+      <button class="btn-run" onclick="addRun(3)">3</button>
+      <button class="btn-run" onclick="addRun(4)">4</button>
+      <button class="btn-run" onclick="addRun(6)">6</button>
+      <button class="btn-run" onclick="addRun(10)">10</button>
+    </div>
+    <div class="buttons">
+      <button class="btn-extra" onclick="extra('Wide')">Wide</button>
+      <button class="btn-extra" onclick="extra('No Ball')">No Ball</button>
+    </div>
+    <div class="buttons">
+      <button class="btn-wicket" onclick="addWicket()">Wicket</button>
+    </div>
+    <div class="buttons">
+      <button class="btn-secondary" onclick="switchInnings()">Switch Innings</button>
+      <button class="btn-secondary" onclick="endInnings()">End Innings</button>
+    </div>
+    <div class="buttons">
+      <button class="btn-undo" onclick="undoLastDelivery()">Undo Last Delivery</button>
+    </div>
+    <div class="buttons">
+      <button class="btn-multi" onclick="toggleMultiMode()">Multi-Option Mode</button>
+    </div>
+    <div id="multiOptions" style="display:none; margin-top:10px;">
+      <label><input type="checkbox" id="optWide"> Wide</label>
+      <label><input type="checkbox" id="optNoBall"> No Ball</label>
+      <label><input type="checkbox" id="optWicket"> Wicket</label>
+      <br>
+      Runs: <input type="number" id="optRuns" value="0" min="0" max="10">
+      <br>
+      <button class="btn-confirm" onclick="confirmMultiDelivery()">Confirm Delivery</button>
+    </div>
+  </div>
+
+  <h3>Ball-by-Ball Grid</h3>
+  <div id="ballGrid" class="ball-grid"></div>
+
+  <h3>Game History (Last 3)</h3>
+  <div id="history"></div>
+
+  <script src="js/script.js"></script>
+  
+  <footer class="creator-note">
+	Created by Suraj Joshi
+  </footer>
+</body>
+</html>
