@@ -28,7 +28,7 @@
       <button class="btn-run" onclick="addRun(3)">3</button>
       <button class="btn-run" onclick="addRun(4)">4</button>
       <button class="btn-run" onclick="addRun(6)">6</button>
-      
+      <button class="btn-run" onclick="addRun(10)">10</button>
     </div>
     <div class="buttons">
       <button class="btn-extra" onclick="extra('Wide')">Wide</button>
@@ -61,8 +61,12 @@
   <h3>Ball-by-Ball Grid</h3>
   <div id="ballGrid" class="ball-grid"></div>
 
-  <h3>Game History (Last 3)</h3>
-  <div id="history"></div>
+  <button class="btn-secondary" onclick="toggleHistory()">Show/Hide Match History</button>
+
+  <section id="historySection" style="display:none;">
+	<h3>Match History</h3>
+	<div id="history"></div>
+  </section>
 
   <script src="js/script.js"></script>
   
@@ -70,5 +74,4 @@
 	Created by Suraj Joshi
   </footer>
 </body>
-
 </html>
