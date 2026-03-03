@@ -208,19 +208,25 @@ function confirmMultiDelivery() {
   if (wide) { team.runs += 1; label += "Wide "; }
   if (noBall) { team.runs += 1; label += "NoBall "; }
   if (runs > 0) { team.runs += runs; label += `+${runs} `; }
-  if (wicket) { team.wickets++; team.balls++; label += "W "; }
+  if (wicket) { team.wickets++; label += "W "; }
 
-  // Ball consumption: only if not wide/no-ball OR if wicket occurred
-  if (!wide && !noBall) team.balls++;
-  else if (wicket) team.balls++;
+  // ✅ Ball consumption: only if NOT wide and NOT no-ball
+  if (!wide && !noBall) {
+    team.balls++;
+  }
 
   team.deliveries.push(delivery);
 
   updateScoreboard(label.trim());
   updateBallGrid();
   if (currentTeam === 1) checkChaseEnd();
-}
 
+  // Reset options for next use
+  document.getElementById("optWide").checked = false;
+  document.getElementById("optNoBall").checked = false;
+  document.getElementById("optWicket").checked = false;
+  document.getElementById("optRuns").value = "";
+}
 function saveGame(teamA, teamB, result) {
   let history = JSON.parse(localStorage.getItem("gameHistory")) || [];
 
