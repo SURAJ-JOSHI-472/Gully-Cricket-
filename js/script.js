@@ -299,3 +299,8 @@ window.addEventListener("beforeunload", function (e) {
     return e.returnValue;
   }
 });
+
+function toggleHistory() {
+  let section = document.getElementById("historySection");
+  section.style.display = section.style.display === "none" ? "block" : "none";
+}
