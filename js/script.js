@@ -154,7 +154,7 @@ function updateBallGrid() {
       if (i < deliveries.length - 1) {
         overRow = document.createElement("div");
         overRow.className = "over-row";
-        overRow.innerHTML = `<strong>${overCount + 1}st Over:</strong> `;
+        overRow.innerHTML = `<strong>${overCount + 1} Over:</strong> `;
       }
     }
   });
@@ -338,5 +338,6 @@ function toggleHistory() {
   let section = document.getElementById("historySection");
   section.style.display = section.style.display === "none" ? "block" : "none";
 }
+
 
 
