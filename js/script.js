@@ -114,27 +114,55 @@ function updateScoreboard(lastEvent="") {
 }
 
 function updateBallGrid() {
-  let team = teamScores[currentTeam];
   let grid = document.getElementById("ballGrid");
   grid.innerHTML = "";
-  team.deliveries.forEach((d, i) => {
-    if (i > 0 && i % 6 === 0) {
-      let breakDiv = document.createElement("div");
-      breakDiv.className = "over-break";
-      grid.appendChild(breakDiv);
+
+  let deliveries = teamScores[currentTeam].deliveries;
+  let overCount = 0;
+  let validBalls = 0;
+
+  let overRow = document.createElement("div");
+  overRow.className = "over-row";
+  overRow.innerHTML = `<strong>${overCount + 1}st Over:</strong> `;
+
+  deliveries.forEach((d, i) => {
+    let ballLabel = "";
+
+    if (d.wide) ballLabel += "Wd ";
+    if (d.noBall) ballLabel += "Nb ";
+    if (d.runs > 0) ballLabel += d.runs;
+    if (d.wicket) ballLabel += " W";
+
+    // Add ball to current over row
+    let span = document.createElement("span");
+    span.className = "ball";
+    span.textContent = ballLabel.trim() || "0";
+    overRow.appendChild(span);
+
+    // ✅ Count only valid balls
+    if (!d.wide && !d.noBall) {
+      validBalls++;
     }
-    let cell = document.createElement("div");
-    let label = "";
-    if (typeof d === "object") {
-      if (d.wide) label += "Wide ";
-      if (d.noBall) label += "NoBall ";
-      if (d.runs > 0) label += `+${d.runs} `;
-      if (d.wicket) label += "W";
-      cell.className = d.wicket ? "wicket" : (d.wide || d.noBall ? "extra" : "run");
+
+    // If 6 valid balls → finish over
+    if (validBalls === 6) {
+      grid.appendChild(overRow);
+      overCount++;
+      validBalls = 0;
+
+      // Start new over row if more deliveries remain
+      if (i < deliveries.length - 1) {
+        overRow = document.createElement("div");
+        overRow.className = "over-row";
+        overRow.innerHTML = `<strong>${overCount + 1}st Over:</strong> `;
+      }
     }
-    cell.textContent = label.trim() || d.runs;
-    grid.appendChild(cell);
   });
+
+  // Append last incomplete over row
+  if (validBalls > 0 || deliveries.length > 0) {
+    grid.appendChild(overRow);
+  }
 }
 
 function checkChaseEnd() {
@@ -310,3 +338,4 @@ function toggleHistory() {
   let section = document.getElementById("historySection");
   section.style.display = section.style.display === "none" ? "block" : "none";
 }
+
