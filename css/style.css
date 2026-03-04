@@ -89,15 +89,15 @@ button:hover {
 }
 
 .over-row {
-  margin: 8px 0;
+  margin: 16px 0;
   font-size: 1em;
   color: #00ffcc;
 }
 
 .ball {
   display: inline-block;
-  margin: 0 4px;
-  padding: 6px 10px;
+  margin: 6 8px;
+  padding: 8px 12px;
   background: #333;
   border-radius: 4px;
   color: #fff;
@@ -158,4 +158,5 @@ button:hover {
 body {
   padding-bottom: 60px; /* same or slightly larger than footer height */
 }
+
 
