@@ -74,7 +74,7 @@ button:hover {
 .ball-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 10px;
   justify-content: center;
   margin: 20px auto;
   max-width: 320px;
@@ -158,6 +158,7 @@ button:hover {
 body {
   padding-bottom: 60px; /* same or slightly larger than footer height */
 }
+
 
 
 
