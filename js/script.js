@@ -123,7 +123,7 @@ function updateBallGrid() {
 
   let overRow = document.createElement("div");
   overRow.className = "over-row";
-  overRow.innerHTML = `<strong>${overCount + 1}st Over:</strong> `;
+  overRow.innerHTML = `<strong>${overCount + 1} Over:</strong> `;
 
   deliveries.forEach((d, i) => {
     let ballLabel = "";
@@ -338,4 +338,5 @@ function toggleHistory() {
   let section = document.getElementById("historySection");
   section.style.display = section.style.display === "none" ? "block" : "none";
 }
+
 
